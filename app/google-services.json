@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "360147911749",
+    "firebase_url": "https://wallpaperapp-cbc53.firebaseio.com",
+    "project_id": "wallpaperapp-cbc53",
+    "storage_bucket": "wallpaperapp-cbc53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360147911749:android:43751f0d2a86644a",
+        "android_client_info": {
+          "package_name": "becomedev.nontachai.wallpaperapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360147911749-fjukvio2mgadbe7d9r1crdhkua3lgkti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "becomedev.nontachai.wallpaperapp",
+            "certificate_hash": "b32eef9d27180f597a14b2379db0a2b734a1cb86"
+          }
+        },
+        {
+          "client_id": "360147911749-3mbsajonu8sk7jrrmmke25iuhuutn4kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO6IFVPMin105cVR-VXTUWhuuJp8q8C-8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360147911749-3mbsajonu8sk7jrrmmke25iuhuutn4kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
