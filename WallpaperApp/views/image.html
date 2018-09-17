@@ -43,15 +43,35 @@
                 </div>
             </div>
 
-			<div class="form-group">
-				<button type="button" id="btn-save" class="btn btn-primary">Save Wallpaper</button>
-			</div>
-		</form>
-	</div>
+            <div class="form-group">
+                <button type="button" id="btn-save" class="btn btn-primary">Save Wallpaper</button>
+               
+            </div>
+             <div class="form-group">
+                
+                <button type="button" id="btn-show" class="btn btn-success">Show Wallpaper</button>
+            </div>
+        </form>
+    </div>
 
-	<div class="col-lg-9">
-		<img src="#" alt="" id="img-wallpaper" width="800" height="400" ">
-	</div>
+    <div class="col-lg-9">
+      <img src="#" alt="" id="img-wallpaper" width="800" height="400" ">
+  </div>
+
+
+  <div class="col-lg-7">
+    <h4>Show Image</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th id="head_name"></th>
+            </tr>
+        </thead>
+        <tbody id="showimage">
+
+        </tbody>
+    </table>
+</div>
 </div>
 
 
@@ -75,9 +95,9 @@
     });
 
 
- 	var dbCategories = firebase.database().ref("categories");
+    var dbCategories = firebase.database().ref("categories");
 
-     dbCategories.on("value",function(categories)
+    dbCategories.on("value",function(categories)
     {
     	categories.forEach(function(category)
     	{
@@ -86,79 +106,80 @@
     });
 
 
-     var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-     $("#btn-save").click(function() {
-     	/* Act on the event */
+    var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-     	$("#title").removeClass("is-invalid");
-        $("#desc").removeClass("is-invalid");
-        $("#wallpaper").removeClass("is-invalid");
+    $("#btn-save").click(function() {
+      /* Act on the event */
 
-     	var title = $("#title").val();
-        var desc = $("#desc").val(); 
-        var wallpaper = $("#wallpaper").prop("files")[0];
+      $("#title").removeClass("is-invalid");
+      $("#desc").removeClass("is-invalid");
+      $("#wallpaper").removeClass("is-invalid");
 
-        if(!title){
-            $("#title").addClass("is-invalid");
-            return; 
-        }
+      var title = $("#title").val();
+      var desc = $("#desc").val(); 
+      var wallpaper = $("#wallpaper").prop("files")[0];
 
-        if(!desc){
-            $("#desc").addClass("is-invalid");
-            return; 
-        }
+      if(!title){
+        $("#title").addClass("is-invalid");
+        return; 
+    }
 
-        if(wallpaper == null){
-            $("#wallpaper").addClass("is-invalid");
-            return; 
-        }
+    if(!desc){
+        $("#desc").addClass("is-invalid");
+        return; 
+    }
 
-        if($.inArray(wallpaper["type"], validImageTypes)<0){
-            $("#wallpaper").addClass("is-invalid");
-            return; 
-        }
+    if(wallpaper == null){
+        $("#wallpaper").addClass("is-invalid");
+        return; 
+    }
+
+    if($.inArray(wallpaper["type"], validImageTypes)<0){
+        $("#wallpaper").addClass("is-invalid");
+        return; 
+    }
 
 
-        var category = $("#category").val();
-        var name = wallpaper["name"];
+    var category = $("#category").val();
+    var name = wallpaper["name"];
 
-        var ext = name.substring(name.lastIndexOf(".",name.length));
-        var imagename = new Date().getTime();
-        var storageRef = firebase.storage().ref(category+"/"+imagename+ext);
+    var ext = name.substring(name.lastIndexOf(".",name.length));
+    var imagename = new Date().getTime();
+    var storageRef = firebase.storage().ref(category+"/"+imagename+ext);
 
-        uploadTask = storageRef.put(wallpaper);
+    uploadTask = storageRef.put(wallpaper);
 
-        uploadTask.on("state_changed",function progress(snapshot)
-        {
-        	var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-        	$("#progress").html(Math.round(percentage)+"%");
-        	$("#progress").attr("style","width:"+percentage+"%");
-        },
-        function error(err)
-        {
+    uploadTask.on("state_changed",function progress(snapshot)
+    {
+     var percentage = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+     $("#progress").html(Math.round(percentage)+"%");
+     $("#progress").attr("style","width:"+percentage+"%");
+ },
+ function error(err)
+ {
 
-        },
-        function complete()
-        {
-        	var imageUrl = uploadTask.snapshot.downloadURL;
-        	var database = firebase.database().ref("images").child(category);
-        	var imageid = database.push().key;
+ },
+ function complete()
+ {
+     var imageUrl = uploadTask.snapshot.downloadURL;
+     var database = firebase.database().ref("images").child(category);
+     var imageid = database.push().key;
 
-        	var image = {
-        		"url":imageUrl,
-        		"title":title,
-        		"desc":desc
-        	};
+     var image = {
+      "url":imageUrl,
+      "title":title,
+      "desc":desc
+  };
 
-        	database.child(imageid).set(image,function(err)
-        	{
-        		alert("Image saved");
-        		resetForm();
-        	});
-        }
-        );
-     });
+  database.child(imageid).set(image,function(err)
+  {
+      alert("Image saved");
+      resetForm();
+  });
+}
+);
+});
 
 
     function resetForm()
@@ -166,8 +187,41 @@
         $("#image-form")[0].reset();
         $("#img-wallpaper").attr("src","");
         $("#progress").html("Complete");
-        
+
     }
+</script>
+</script>
+
+
+
+<script>
+
+   $("#btn-show").click(function() {
+       var category_op = $("#category").val();
+       console.log(category_op);   
+
+
+       var categorieshtml = "";
+       var dbCategories2 = firebase.database().ref("images").child(category_op);
+       dbCategories2.on("value",function(images){
+         images.forEach(function(img)
+         {
+
+            categorieshtml += "<td> <img width='250' height='150' src='";
+            categorieshtml += img.val().url;
+            categorieshtml += "'/></td>";
+
+        });
+         $("#showimage").html(categorieshtml);
+         $("#head_name").html(category_op);
+     });
+
+       
+
+
+   });
+
+
 
 </script>
 
