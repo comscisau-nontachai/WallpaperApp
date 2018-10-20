@@ -17,6 +17,7 @@
             android:text="Marvel"
             android:textColor="@color/colorWhite"
             android:background="@color/colorCategoryBG"
+            android:visibility="gone"
             android:layout_alignParentBottom="true"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
