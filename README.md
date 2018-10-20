@@ -1,5 +1,14 @@
 # WallpaperApp - Naruto wallpaper HD
 
+----------- TECH USE -----------
+- Firebase Hosting
+- Firebase Real time database
+- Firebase Core
+- Firebase Authentication
+- Admin page by php
+- App make by Android Studio
+
+
 <img src="https://user-images.githubusercontent.com/26242114/47251885-f6f6fd00-d464-11e8-9a3f-24c43009cd08.png" width="250">
 <img src="https://user-images.githubusercontent.com/26242114/47251886-f6f6fd00-d464-11e8-8ee4-6b20f263b307.png" width="250">
 <img src="https://user-images.githubusercontent.com/26242114/47251887-f78f9380-d464-11e8-9036-f34f70487a43.png" width="250">
