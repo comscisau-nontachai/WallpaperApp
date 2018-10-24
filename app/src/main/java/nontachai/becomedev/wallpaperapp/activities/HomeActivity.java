@@ -7,10 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-
 import nontachai.becomedev.wallpaperapp.R;
 import nontachai.becomedev.wallpaperapp.fragment.FavouriteFragment;
 import nontachai.becomedev.wallpaperapp.fragment.HomeFragment;
@@ -20,14 +16,18 @@ import nontachai.becomedev.wallpaperapp.fragment.SettingFragment;
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
-    private InterstitialAd mInterstitialAd;
+//    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        MobileAds.initialize(this,"ca-app-pub-1787292132881960~8499100450");//ca-app-pub-3940256099942544~3347511713
+//        MobileAds.initialize(this,"ca-app-pub-1787292132881960~8499100450");//ca-app-pub-3940256099942544~3347511713
+
+
+
+
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
