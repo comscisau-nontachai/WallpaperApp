@@ -13,9 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+
 
 import java.util.List;
 
@@ -27,26 +25,10 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     private Context mContext;
     private List<Category> categoryList;
-    private InterstitialAd mInterstitialAd;
 
     public CategoriesAdapter(Context mContext, List<Category> categoryList) {
         this.mContext = mContext;
         this.categoryList = categoryList;
-
-
-        mInterstitialAd = new InterstitialAd(mContext);
-        mInterstitialAd.setAdUnitId("ca-app-pub-1787292132881960/3784869672");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-
-        });
-
 
     }
 
@@ -85,15 +67,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
         @Override
         public void onClick(View v) {
-
-//            ///load banner
-            if (mInterstitialAd.isLoaded()) {
-                mInterstitialAd.show();
-            } else {
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-
-
 
             int p = getAdapterPosition();
             Category c =categoryList.get(p);

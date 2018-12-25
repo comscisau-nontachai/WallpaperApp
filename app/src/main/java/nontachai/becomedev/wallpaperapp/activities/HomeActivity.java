@@ -16,17 +16,11 @@ import nontachai.becomedev.wallpaperapp.fragment.SettingFragment;
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView bottomNavigationView;
-//    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-//        MobileAds.initialize(this,"ca-app-pub-1787292132881960~8499100450");//ca-app-pub-3940256099942544~3347511713
-
-
-
 
 
         bottomNavigationView = findViewById(R.id.bottom_nav);

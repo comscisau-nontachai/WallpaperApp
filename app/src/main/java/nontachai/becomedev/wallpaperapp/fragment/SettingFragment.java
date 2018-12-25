@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -72,6 +70,7 @@ public class SettingFragment extends Fragment {
             Glide.with(getActivity()).load(user.getPhotoUrl().toString()).into(imageView);
 
             textViewName.setText(user.getDisplayName());
+            textViewEmail.setText(user.getEmail());
 
             view.findViewById(R.id.text_view_logout).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,8 +96,6 @@ public class SettingFragment extends Fragment {
                 }
             });
         }
-
-
 
     }
 
